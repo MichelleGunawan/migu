@@ -2,6 +2,18 @@
 
 A modern, production-ready web application built with Next.js, TypeScript, and Tailwind CSS.
 
+## Design Guardrails
+
+This product uses a **calm spatial neo-minimal** design language.
+
+Before shipping any UI:
+- Study reference images in `/docs/references/`
+- Follow `/docs/DESIGN_SYSTEM.md`
+- Use only tokens from `/lib/design-tokens.ts` and `var(--*)` CSS variables
+- Avoid generic dashboard aesthetics
+- Preserve whitespace and visual rhythm
+- Prioritize emotional coherence over information density
+
 ## Tech Stack
 
 | Layer | Technology |
