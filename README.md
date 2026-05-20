@@ -1,36 +1,124 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Migu
+
+A modern, production-ready web application built with Next.js, TypeScript, and Tailwind CSS.
+
+## Tech Stack
+
+| Layer | Technology |
+|-------|------------|
+| Framework | [Next.js 16](https://nextjs.org/) — App Router |
+| Language | [TypeScript 5](https://www.typescriptlang.org/) — strict mode |
+| Styling | [Tailwind CSS 4](https://tailwindcss.com/) |
+| Linting | [ESLint 9](https://eslint.org/) + [Prettier](https://prettier.io/) |
+| Git Hooks | [Husky](https://typicode.github.io/husky/) + [lint-staged](https://github.com/okonet/lint-staged) |
+| Deployment | [Vercel](https://vercel.com/) |
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 18+
+- npm 9+
+
+### Installation
 
 ```bash
+# 1. Clone the repository
+git clone https://github.com/MichelleGunawan/migu.git
+cd migu
+
+# 2. Install dependencies
+npm install
+
+# 3. Copy env file and fill in values
+cp .env.example .env.local
+
+# 4. Start the dev server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+migu/
+├── app/                # Next.js App Router — pages, layouts, API routes
+│   ├── layout.tsx      # Root layout (fonts, metadata, providers)
+│   ├── page.tsx        # Home page
+│   └── globals.css     # Tailwind base styles
+├── components/         # Reusable UI components
+├── hooks/              # Custom React hooks
+├── lib/                # Shared utilities and helpers
+│   └── utils.ts        # cn() helper and misc utilities
+├── services/           # External API / data-fetching logic
+├── styles/             # Global CSS beyond Tailwind
+├── types/              # Shared TypeScript types and interfaces
+└── public/             # Static assets (images, fonts, icons)
+```
 
-## Learn More
+## Available Scripts
 
-To learn more about Next.js, take a look at the following resources:
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Start development server at `localhost:3000` |
+| `npm run build` | Build for production |
+| `npm run start` | Start production server |
+| `npm run lint` | Lint all files with ESLint |
+| `npm run lint:fix` | Lint and auto-fix all fixable issues |
+| `npm run format` | Format all files with Prettier |
+| `npm run format:check` | Check formatting without writing |
+| `npm run typecheck` | Run TypeScript compiler check |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Environment Variables
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Copy `.env.example` to `.env.local` and fill in the values:
 
-## Deploy on Vercel
+```bash
+cp .env.example .env.local
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+| Variable | Description | Required |
+|----------|-------------|----------|
+| `NEXT_PUBLIC_APP_URL` | Public base URL of the app | Yes |
+| `NEXT_PUBLIC_APP_NAME` | Display name of the app | Yes |
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+> Variables prefixed with `NEXT_PUBLIC_` are exposed to the browser.
+> All other variables are server-only secrets.
+
+### Syncing env vars with Vercel
+
+```bash
+# Push a local variable to Vercel (all environments)
+vercel env add VARIABLE_NAME
+
+# Pull all Vercel env vars to .env.local
+vercel env pull .env.local
+```
+
+## Deployment
+
+This project is deployed on Vercel. Every push to `main` triggers an automatic production deployment.
+
+```
+main branch  →  production deployment  →  migu.vercel.app
+PR branch    →  preview deployment     →  migu-git-<branch>.vercel.app
+```
+
+### Manual deploy
+
+```bash
+vercel         # deploy to preview
+vercel --prod  # deploy to production
+```
+
+## Development Workflow
+
+1. Create a feature branch off `main`
+2. Make your changes — Husky will run lint + typecheck on every commit
+3. Open a PR — Vercel auto-deploys a preview URL in the PR
+4. Merge to `main` — triggers production deployment automatically
+
+## License
+
+Private — All rights reserved.
