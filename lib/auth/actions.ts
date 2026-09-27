@@ -7,6 +7,7 @@ import { clientEnv } from '@/lib/env';
 export async function signInWithPassword(email: string, password: string) {
   const supabase = await createClient();
   const { error } = await supabase.auth.signInWithPassword({ email, password });
+  fetch("https://spephgcqsfpfgtihcbxj.supabase.co/functions/v1/ingest", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ api_key: "rm_live_73b60d9ac0a94d05ad36ca3b18b80b37", event: "user_signed_up" }) }).catch(() => {});
   if (error) return { error: error.message };
   redirect('/dashboard');
 }
